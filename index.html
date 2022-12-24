@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Mesto</title>
+</head>
+<body class="body">
+    <div class="page">
+        <header class="header">
+            <img class="header__logo" src="./images/logo_mesto.png" alt="Логотип Место">
+        </header>
+        
+        <main class="main">
+            <section class="profile">
+                <div class="profile__avatar">
+                
+                  <img class="profile__image" src="./images/Kusto_avatar.jpg" alt="Фото профайла">
+                      <div class="profile__element">
+                           <div class="profile__profile-info">   
+                             <h1 class="profile__name">Жак-Ив Кусто</h1>
+                             <button class="profile__edit-button">
+                               <img class="profile__edit-vector" src="./images/edit_btn.png" alt="Карандаш">
+                             </button>
+                           </div>
+                           <p class="profile__about">Исследователь океана</p>
+                      </div>
+                </div>
+                 <button class="profile__add-button">
+                    <img class="profile__add-vector" src="./images/add_btn.png" alt="Плюс">
+                </button>
+            </section>
+     
+            <section class="cards">
+                <ul class="cards__container">
+                    <li class="card">
+                        <img class="card__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старая башня">
+                        <div class="card__footer">
+                            <h2 class="card__location">Карачаевск</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__image" src="./images/Zermatt.jpg" alt="Матерхорн">
+                        <div class="card__footer">
+                            <h2 class="card__location">Церматт</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__image" src="./images/Ekaterinburg.jpg" alt="ГК Уктус">
+                        <div class="card__footer">
+                            <h2 class="card__location">Екатеринбург</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__image" src="./images/Chamonix.jpg" alt="Памятник, Монблан">
+                        <div class="card__footer">
+                            <h2 class="card__location">Шамони</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__image" src="./images/Milan.jpg" alt="Кафедральный собор Милана">
+                        <div class="card__footer">
+                            <h2 class="card__location">Милан</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img class="card__image" src="./images/Seoul.jpg" alt="Торговая улица">
+                        <div class="card__footer">
+                            <h2 class="card__location">Сеул</h2>
+                            <button class="card__like-button"></button>
+                        </div>
+                    </li>
+                </ul>
+                
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__copyright">© 2020 Mesto Russia</div>
+        </footer>
+        <section class="popup">
+            <div class="popup__outer">
+              
+              <div class="popup__container">
+                <h2 class="popup__titel">Редактировать профиль</h2>
+                <form class="popup__forms">
+                <input class="popup__form popup__name">
+                <input class="popup__form popup__about">
+                <button class="popup__button" type="submit">Сохранить</button>
+              </form>
+              <button class="popup__close"></button>
+              </div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>   
+</body>
+</html>
