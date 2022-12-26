@@ -1,0 +1,31 @@
+.popup__close{
+    background-image: url(../../../images/Close_Icon.png);
+    background-color:rgba(0, 0, 0, 0.5);
+    background-position: center;
+    width: 32px;
+    height: 32px;
+    left: 438px;
+    top: -41px;
+    position: absolute;
+    border: none;
+}
+.popup__close:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px){
+    .popup__close{
+        left: 293px;
+        background-image: url(../../../images/Close_Icon_mob.png);
+        width: 20px;
+        height: 20px;
+        left: 262px;
+        top: -33px;
+    }
+}
+@media screen and (max-width: 320px){
+    .popup__close{  
+        left: 262px;
+        top: -33px;
+    }
+}

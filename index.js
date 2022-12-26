@@ -3,10 +3,7 @@ const popupCloseBtnElement=popupElement.querySelector('.popup__close');
 const popupOpenBtnElement=document.querySelector('.profile__edit-button');
 const popupSubmitBtnElement=popupElement.querySelector('.popup__button');
 
-/*
-const togglePopupVisibility=function(){
-    popupElement.classList.toggle('popup_opened');
-}*/
+
 const openPopup=function(){
     popupElement.classList.add('popup_opened');
     nameInput.value=profileName.textContent;
@@ -30,8 +27,7 @@ let jobInput = formElement.querySelector('.popup__about');
 let profileName = document.querySelector('.profile__name');
 let profileAbout = document.querySelector('.profile__about');
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+// Обработчик «отправки» формы
 function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent=nameInput.value;
