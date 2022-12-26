@@ -46,8 +46,8 @@
 .header{
     max-width: 69%;
     margin: 0 auto;
-    padding-top: 45px;
-    padding-bottom: 41px;
+    padding-top: 44px;
+    padding-bottom: 38px;
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     
 }
@@ -90,7 +90,7 @@
 }
 .profile{
     display: flex;
-    padding-top: 34px;
+    padding-top: 38px;
     padding-bottom: 45px;
     justify-content: space-between;
     align-items: center;
@@ -124,6 +124,7 @@ align-items: center;
 margin: 0 auto;
   padding-top: 42px;
     padding-bottom: 36px;
+    max-width: 100%;
 }
 }
 @media screen and (max-width: 320px){
@@ -140,15 +141,20 @@ margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 100%;
     }
 }
 
 .profile__profile-info{
     display: flex;
     padding-left: 30px;
-    
+    max-width: 100%;
 }
-
+@media screen and (max-width: 448px){
+    .profile__profile-info{
+        padding-left: 0;
+    }
+}
 .profile__name{
     font-style: normal;
     font-weight: 500;
@@ -159,6 +165,7 @@ margin: 0 auto;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 100%;
 }
 @media screen and (max-width: 768px){
     .profile__name{
@@ -170,7 +177,7 @@ margin: 0 auto;
      margin:0 auto;
      margin-top: 25px;
      margin-bottom: 9px;
-    
+     padding-left: 30px;
     
 font-size: 27px;
 line-height: 33px;
@@ -276,9 +283,10 @@ padding:0;
 margin: 0;
 list-style-type:none;
 display: grid;
-grid-template-columns: repeat(3,1fr);
+grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(2, 1fr);
 gap: 23px 17px;
+justify-items: center;
 }
 @media screen and (max-width: 1024px){
     .cards__container{
@@ -297,6 +305,10 @@ gap: 23px 17px;
 .card{
     background: #FFFFFF;
     border-radius: 10px;
+    max-width: 282px;
+}
+.cards{
+    max-width: 880px;
 }
 .card__image{
     width: 100%;
@@ -311,12 +323,20 @@ line-height: 1.2;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
+max-width: 155px;
+
 }
 
 @media screen and (max-width: 768px){
     .card__location{
 font-size: 24px;
 line-height: 29px;
+
+    }
+}
+@media screen and (max-width: 500px){
+    .card__location{
+max-width: 155px;
     }
 }
 .card__like-button{
@@ -346,6 +366,7 @@ line-height: 29px;
     display: flex;
     margin: 22px 22px 22px 22px;
     justify-content: space-between;
+    max-width: 100%;
     }
 .footer{
     max-width: 69%;
