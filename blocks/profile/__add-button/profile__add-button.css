@@ -4,11 +4,14 @@
     height: 50px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
+    background-image: url('../../../images/add_btn.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .profile__add-button:hover{
     opacity: 0.6;
     cursor: pointer;
-    }
+}
 @media screen and (max-width: 1024px){
     .profile__add-button{
         margin-top: 20px;
@@ -18,8 +21,6 @@
     .profile__add-button{
         margin-top: 0;
         min-width: 100%;
+        background-size: 16px 16px;
     }
-}
-.profile__add-vector{
-    margin:0;
 }

@@ -1,6 +1,6 @@
 .card__footer{
     display: flex;
-    margin: 22px 22px 22px 22px;
+    padding: 22px;
     justify-content: space-between;
     max-width: 100%;
     }

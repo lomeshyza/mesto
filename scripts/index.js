@@ -1,0 +1,37 @@
+const popupElement = document.querySelector('.popup');
+const popupCloseBtnElement = popupElement.querySelector('.popup__close');
+const popupOpenBtnElement = document.querySelector('.profile__edit-button');
+const popupSubmitBtnElement = popupElement.querySelector('.popup__button');
+
+
+const openPopup = function(){
+    popupElement.classList.add('popup_opened');
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileAbout.textContent;
+}
+const closePopup = function(){
+    popupElement.classList.remove('popup_opened');
+}
+
+popupOpenBtnElement.addEventListener('click',openPopup);
+popupCloseBtnElement.addEventListener('click',closePopup);
+
+
+// Находим форму в DOM
+
+let formElement = document.querySelector('.popup__forms');
+
+let nameInput = formElement.querySelector('.popup__form_name');
+let jobInput = formElement.querySelector('.popup__form_about');
+let profileName = document.querySelector('.profile__name');
+let profileAbout = document.querySelector('.profile__about');
+
+// Обработчик «отправки» формы
+function handleFormSubmit (evt) {
+    evt.preventDefault();
+    profileName.textContent = nameInput.value;
+    profileAbout.textContent = jobInput.value;
+    popupElement.classList.remove('popup_opened'); 
+}
+
+formElement.addEventListener('submit', handleFormSubmit);
