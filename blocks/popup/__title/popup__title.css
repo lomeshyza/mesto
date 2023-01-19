@@ -4,9 +4,8 @@
     line-height: 29px;
     color: #000000;
     margin: 0;
-    padding: 34px 64px 14px 13px;
+    padding: 34px 9px 14px 13px;
     box-sizing: border-box;
-    width: 330px;
 }
 @media screen and (max-width: 768px){
     .popup__title{

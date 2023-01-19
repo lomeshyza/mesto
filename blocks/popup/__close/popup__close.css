@@ -2,6 +2,7 @@
     background: none;
     background-image: url(../../../images/Close_Icon.svg);
     background-position: center;
+    background-repeat: no-repeat;
     width: 32px;
     height: 32px;
     right: -41px;

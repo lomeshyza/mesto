@@ -3,6 +3,7 @@
  background-image: url(../../../images/Trash.svg);
  background-position: center;
  background-size: contain;
+ background-repeat: no-repeat;
  border: none;
  width:18px;
  height:19px;
