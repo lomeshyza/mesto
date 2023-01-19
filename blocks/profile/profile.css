@@ -3,12 +3,14 @@
     padding-top: 38px;
     padding-bottom: 45px;
     justify-content: space-between;
+    align-self: normal;
     align-items: center;
 }
 @media screen and (max-width: 1024px){
     .profile{
         flex-direction: column;
         justify-content: center;
+        align-items: center;
     }
 }
 @media screen and (max-width: 768px){
