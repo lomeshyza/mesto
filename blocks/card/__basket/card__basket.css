@@ -5,12 +5,13 @@
  background-size: contain;
  background-repeat: no-repeat;
  border: none;
- width:18px;
- height:19px;
+ width: 18px;
+ height: 19px;
  position: absolute;
  right: 20px;
  top: 20px;
 }
 .card__basket:hover{
     opacity: 0.6;
-    cursor: pointer;}
+    cursor: pointer;
+}
