@@ -37,9 +37,21 @@
         <section class="popup popup_type_edit">
             <div class="popup__container">
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__forms" name="popupProfileForm">
-                    <input class="popup__form popup__form_type_name" name="popupProfileName">
-                    <input class="popup__form popup__form_type_about" name="popupProfileAbout">
+                <form class="popup__forms" name="popupProfileForm" novalidate>
+                    <input id='name-input' class="popup__form popup__form_type_name"
+                      type="text"
+                      name="popupProfileName"
+                      minlength="2"
+                      maxlength="40"
+                      required>
+                      <span class='name-input-error popup__form-error'>Вы пропустили это поле.</span>
+                    <input id='about-input' class="popup__form popup__form_type_about"
+                      type="text"
+                      name="popupProfileAbout"
+                      minlength="2"
+                      maxlength="200"
+                      required>
+                    <span class='about-input-error popup__form-error'>Вы пропустили это поле.</span>
                     <button class="popup__button popup__button_type_edit" type="submit">Сохранить</button>
                 </form>
                 <button class="popup__close" type="button"></button>
@@ -48,9 +60,21 @@
         <section class="popup popup_type_add">
             <div class="popup__container">
                 <h3 class="popup__title">Новое место</h3>
-                <form class="popup__forms popup__forms_type_add" name="popupPlaceForm">
-                    <input class="popup__form popup__form_type_place" name="popupPlace" placeholder="Название">
-                    <input class="popup__form popup__form_type_image" name="popupPlaceLink" placeholder="Ссылка на картинку">
+                <form class="popup__forms popup__forms_type_add" name="popupPlaceForm" novalidate>
+                    <input class="popup__form popup__form_type_place" 
+                      type="text"
+                      name="popupPlace"
+                      minlength="2"
+                      maxlength="30"
+                      placeholder="Название" 
+                      required>
+                    <span class='popup__form_type_place-error'></span>
+                    <input class="popup__form popup__form_type_image" 
+                      type="url" 
+                      name="popupPlaceLink" 
+                      placeholder="Ссылка на картинку" 
+                      required>
+                    <span class='popup__form_type_image-error'></span>
                     <button class="popup__button popup__button_type_add" type="submit">Создать</button>
                 </form>
                 <button class="popup__close" type="button"></button>
