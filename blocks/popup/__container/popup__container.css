@@ -5,6 +5,8 @@
     position: relative;
     padding: 0 22px;
     box-sizing: border-box;
+    height: 330px;
+    width: 430px;
 }
 @media screen and (max-width: 768px){
     .popup__container{

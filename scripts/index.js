@@ -39,6 +39,23 @@ function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
 };
 
+function resetErrors(popup){
+  if(popupEdit.classList.contains('popup_opened') || popupAdd.classList.contains('popup_opened')){
+    //const buttonElement = popup.querySelector('.popup__button');
+    Array.from(popup.querySelectorAll('.popup__form')).forEach(function(el){
+      el.classList.remove('popup__form_type_error');
+      el.textContent = '';
+    buttonElement.classList.add('popup__button_disabled');
+    //buttonElement.disabled = true;
+    });
+    Array.from(popup.querySelectorAll('.popup__form-error')).forEach(function(el){
+      el.classList.remove('popup__form-error_active');
+      el.textContent = '';
+    })
+    //buttonElement.classList.add('popup__button_disabled');
+    //buttonElement.disabled = true;
+  }
+}
 
 // Обработчик «отправки» формы профиля
 function handleFormSubmit (evt) {
@@ -116,10 +133,20 @@ const handleFormSave = (evt) => {
     formAddElement.reset();
     closePopup(popupAdd);
 };
-
+const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
+const buttonElement = formElement.querySelector('.popup__button');
 //слушатели
-popupOpenBtnElement.addEventListener('click', function (){openPopupEdit()});
-popupAddOpenBtn.addEventListener('click', function (){ openPopup(popupAdd)});
+popupOpenBtnElement.addEventListener('click', function (){
+  openPopupEdit();
+  resetErrors(popupEdit);
+  toggleButtonState(inputList, buttonElement);
+});
+popupAddOpenBtn.addEventListener('click', function (){ 
+  openPopup(popupAdd);
+  resetErrors(popupAdd);
+  formAddElement.reset();
+  toggleButtonState(inputList, buttonElement);
+});
 popupCloseBtnElement.forEach(button => {
     button.addEventListener('click', function(evt) {
         const currentPopup = evt.target.closest('.popup');
@@ -144,9 +171,7 @@ const showInputError = function(formElement, popupForm, errorMessage) {
    popupForm.classList.add('popup__form_type_error');
    errorElement.textContent = errorMessage;
    errorElement.classList.add('popup__form-error_active');
-   console.log(errorElement);
-   console.log(errorMessage);
-};
+  };
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = function(formElement, popupForm) {
     const errorElement = formElement.querySelector(`.${popupForm.id}-error`);
@@ -157,13 +182,12 @@ const hideInputError = function(formElement, popupForm) {
 
 // Функция, которая проверяет валидность поля
 const isValid = function(formElement, popupForm){
-    if(!popupForm.validity.valid+-+98){
+    if(!popupForm.validity.valid){
         showInputError(formElement, popupForm, popupForm.validationMessage);
     }else{
         hideInputError(formElement, popupForm);
     }
 };
-//popupForm.addEventListener('input', isValid);
 //Неактивная кнопка
 const hasInvalidInput = (inputList) => {
     // проходим по этому массиву методом some
@@ -174,16 +198,20 @@ const hasInvalidInput = (inputList) => {
   
       return !popupForm.validity.valid;
     })
-  }; 
-  
+  };
+
 const toggleButtonState = (inputList, buttonElement) => {
     // Если есть хотя бы один невалидный инпут
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
       buttonElement.classList.add('popup__button_disabled');
+      const isFormValid = isValid(formElement, popupForm);
+      buttonElement.disabled = !isFormValid;
+  console.log(buttonElement);
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove('popup__button_disabled');
+      buttonElement.disabled = false;
     }
   }; 
 
@@ -201,9 +229,12 @@ const setEventListeners = (formElement) => {
         // передав ей форму и проверяемый элемент
         isValid(formElement, popupForm);
         toggleButtonState(inputList, buttonElement);
-      });
+      },0)
+   
+  
     });
   }; 
+ 
 const enableValidation = () => {
     // Найдём все формы с указанным классом в DOM,
     // сделаем из них массив методом Array.from
@@ -211,12 +242,14 @@ const enableValidation = () => {
   
     // Переберём полученную коллекцию
     formList.forEach((formElement) => {
+      const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
       // Для каждой формы вызовем функцию setEventListeners,
       // передав ей элемент формы
       setEventListeners(formElement);
+      
     });
   };
-  
+ 
+
   // Вызовем функцию
-  enableValidation(); 
-  
+  enableValidation();
