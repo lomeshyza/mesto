@@ -1,4 +1,3 @@
-
 const popupElement = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupCloseBtnElement = document.querySelectorAll('.popup__close');
@@ -21,120 +20,119 @@ const likeButton = document.querySelectorAll('.card__like-button');
 const popupImage = document.querySelector('.popup_type_image');
 const popupPicture = document.querySelector('.popup__picture');
 const popupLocation = document.querySelector('.popup__location');
+const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
+const buttonElement = formElement.querySelector('.popup__button');
+const formError = formElement.querySelector(`.${popupForm.id}-error`);
 
 //Функция открытия попапа
 function openPopup(popupElement) {
-    popupElement.classList.add('popup_opened');
+  popupElement.classList.add('popup_opened');
 };
 
 //Функция открытия попапа редактирования
 function openPopupEdit (){
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileAbout.textContent;
-    openPopup(popupEdit);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileAbout.textContent;
+  openPopup(popupEdit);
 };
 
 //Функция закрытия попапа
 function closePopup(popupElement) {
-    popupElement.classList.remove('popup_opened');
+  popupElement.classList.remove('popup_opened');
 };
 
+//Функция очистки формы
 function resetErrors(popup){
   if(popupEdit.classList.contains('popup_opened') || popupAdd.classList.contains('popup_opened')){
-    //const buttonElement = popup.querySelector('.popup__button');
     Array.from(popup.querySelectorAll('.popup__form')).forEach(function(el){
       el.classList.remove('popup__form_type_error');
       el.textContent = '';
-    buttonElement.classList.add('popup__button_disabled');
-    //buttonElement.disabled = true;
+      buttonElement.classList.add('popup__button_disabled');
     });
     Array.from(popup.querySelectorAll('.popup__form-error')).forEach(function(el){
       el.classList.remove('popup__form-error_active');
       el.textContent = '';
-    })
-    //buttonElement.classList.add('popup__button_disabled');
-    //buttonElement.disabled = true;
-  }
-}
+    });
+  };
+};
 
 // Обработчик «отправки» формы профиля
 function handleFormSubmit (evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileAbout.textContent = jobInput.value;
-    closePopup(popupEdit);
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileAbout.textContent = jobInput.value;
+  closePopup(popupEdit);
 };
 formElement.addEventListener('submit', handleFormSubmit);
 
-
-//Закрытие попапа по клику на фон,работает
-/* function stopPropagation(evt) {
-    evt.stopPropagation();} */
+//Закрытие попапа по клику на фон
 
 popupElement.forEach(function (element) {
-    element.addEventListener('click', function(evt) {
-       if (evt.target.classList.contains('popup')) {
-       const currentPopup = evt.target.closest('.popup');
-       //evt.stopPropagation();
-       closePopup(currentPopup);
+  element.addEventListener('click', function(evt) {
+    if (evt.target.classList.contains('popup')) {
+    const currentPopup = evt.target.closest('.popup');
+    closePopup(currentPopup);
   }}); 
 });
 
-//Закрытие попапа нажатием на Esc ,работает
+//Закрытие попапа нажатием на Esc
 document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-        popupElement.forEach(function (element){
-        closePopup(element)
-        });
-    };
+  if (evt.key === 'Escape') {
+    popupElement.forEach(function (element){
+    closePopup(element)
+    });
+  };
 });
 
 //Функция лайка
 function like (evt) { 
-   evt.target.classList.toggle('card__like-button_active');
+  evt.target.classList.toggle('card__like-button_active');
 }; 
 
 //Функция удаления карточки
 function removeCard(evt) {
-   const deleteCard = evt.target.closest('.card');
-   deleteCard.remove();
+  const deleteCard = evt.target.closest('.card');
+  deleteCard.remove();
 };
 
 //Функция открытия изображения
 function openImage(evt) {
-    const cardToOpen = evt.target.closest('.card');
-    popupPicture.src = cardToOpen.querySelector('.card__image').src;
-    popupLocation.textContent = cardToOpen.querySelector('.card__location').textContent;
-    openPopup(popupImage);
+  const cardToOpen = evt.target.closest('.card');
+  popupPicture.src = cardToOpen.querySelector('.card__image').src;
+  popupLocation.textContent = cardToOpen.querySelector('.card__location').textContent;
+  openPopup(popupImage);
 };
 
 //Функция создания карточки
 const creatNewCard = (item) => {
 //клонировали пустой шаблон
-    const initialCardsElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const initialCardsElement = cardTemplate.querySelector('.card').cloneNode(true);
 //присвоили значения из массива
-    initialCardsElement.querySelector('.card__image').src = item.link;
-    initialCardsElement.querySelector('.card__image').alt = item.name;
-    initialCardsElement.querySelector('.card__location').textContent = item.name;
+  initialCardsElement.querySelector('.card__image').src = item.link;
+  initialCardsElement.querySelector('.card__image').alt = item.name;
+  initialCardsElement.querySelector('.card__location').textContent = item.name;
 //повесили слушатели лайк, удаление, открытие картинки
-    initialCardsElement.querySelector('.card__like-button').addEventListener('click', like);
-    initialCardsElement.querySelector('.card__basket').addEventListener('click', removeCard);
-    initialCardsElement.querySelector('.card__image').addEventListener('click', openImage);
-    return initialCardsElement;
+  initialCardsElement.querySelector('.card__like-button').addEventListener('click', like);
+  initialCardsElement.querySelector('.card__basket').addEventListener('click', removeCard);
+  initialCardsElement.querySelector('.card__image').addEventListener('click', openImage);
+  return initialCardsElement;
 };
 initialCards.forEach(initialCardsElement => {
-    cardsContainer.append(creatNewCard(initialCardsElement));
+  cardsContainer.append(creatNewCard(initialCardsElement));
 });
 
 //функция создания карточки из формы
 const handleFormSave = (evt) => {
-    evt.preventDefault();
-    cardsContainer.prepend(creatNewCard({name: placeInput.value, link: imageInput.value, alt: placeInput.value}));
-    formAddElement.reset();
-    closePopup(popupAdd);
+  evt.preventDefault();
+  cardsContainer.prepend(creatNewCard({
+    name: placeInput.value, 
+    link: imageInput.value, 
+    alt: placeInput.value
+  }));
+  formAddElement.reset();
+  closePopup(popupAdd);
 };
-const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
-const buttonElement = formElement.querySelector('.popup__button');
+
 //слушатели
 popupOpenBtnElement.addEventListener('click', function (){
   openPopupEdit();
@@ -148,108 +146,9 @@ popupAddOpenBtn.addEventListener('click', function (){
   toggleButtonState(inputList, buttonElement);
 });
 popupCloseBtnElement.forEach(button => {
-    button.addEventListener('click', function(evt) {
-        const currentPopup = evt.target.closest('.popup');
-        closePopup(currentPopup);
-    });
+  button.addEventListener('click', function(evt) {
+      const currentPopup = evt.target.closest('.popup');
+      closePopup(currentPopup);
+  });
 });
 formAddElement.addEventListener('submit', handleFormSave);
-
-//Валидация
-//const formInput = formElement.querySelector('.popup__form');
-const formError = formElement.querySelector(`.${popupForm.id}-error`);
-
-
-popupForm.addEventListener('input', function (evt) {
-    // Выведем в консоль значение свойства validity.valid поля ввода, 
-    // на котором слушаем событие input
-    console.log(evt.target.validity.valid);
-  }); 
-// Функция, которая добавляет класс с ошибкой
-const showInputError = function(formElement, popupForm, errorMessage) {
-   const errorElement = formElement.querySelector(`.${popupForm.id}-error`);
-   popupForm.classList.add('popup__form_type_error');
-   errorElement.textContent = errorMessage;
-   errorElement.classList.add('popup__form-error_active');
-  };
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = function(formElement, popupForm) {
-    const errorElement = formElement.querySelector(`.${popupForm.id}-error`);
-    popupForm.classList.remove('popup__form_type_error');
-    errorElement.classList.remove('popup__form-error_active');
-    errorElement.textContent = '';
-};
-
-// Функция, которая проверяет валидность поля
-const isValid = function(formElement, popupForm){
-    if(!popupForm.validity.valid){
-        showInputError(formElement, popupForm, popupForm.validationMessage);
-    }else{
-        hideInputError(formElement, popupForm);
-    }
-};
-//Неактивная кнопка
-const hasInvalidInput = (inputList) => {
-    // проходим по этому массиву методом some
-    return inputList.some((popupForm) => {
-      // Если поле не валидно, колбэк вернёт true
-      // Обход массива прекратится и вся функция
-      // hasInvalidInput вернёт true
-  
-      return !popupForm.validity.valid;
-    })
-  };
-
-const toggleButtonState = (inputList, buttonElement) => {
-    // Если есть хотя бы один невалидный инпут
-    if (hasInvalidInput(inputList)) {
-      // сделай кнопку неактивной
-      buttonElement.classList.add('popup__button_disabled');
-      const isFormValid = isValid(formElement, popupForm);
-      buttonElement.disabled = !isFormValid;
-  console.log(buttonElement);
-    } else {
-      // иначе сделай кнопку активной
-      buttonElement.classList.remove('popup__button_disabled');
-      buttonElement.disabled = false;
-    }
-  }; 
-
-const setEventListeners = (formElement) => {
-    // Находим все поля внутри формы,
-    // сделаем из них массив методом Array.from
-    const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
-    const buttonElement = formElement.querySelector('.popup__button');
-    toggleButtonState(inputList, buttonElement);
-    // Обойдём все элементы полученной коллекции
-    inputList.forEach((popupForm) => {
-      // каждому полю добавим обработчик события input
-      popupForm.addEventListener('input', () => {
-        // Внутри колбэка вызовем isValid,
-        // передав ей форму и проверяемый элемент
-        isValid(formElement, popupForm);
-        toggleButtonState(inputList, buttonElement);
-      },0)
-   
-  
-    });
-  }; 
- 
-const enableValidation = () => {
-    // Найдём все формы с указанным классом в DOM,
-    // сделаем из них массив методом Array.from
-    const formList = Array.from(document.querySelectorAll('.popup__forms'));
-  
-    // Переберём полученную коллекцию
-    formList.forEach((formElement) => {
-      const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
-      // Для каждой формы вызовем функцию setEventListeners,
-      // передав ей элемент формы
-      setEventListeners(formElement);
-      
-    });
-  };
- 
-
-  // Вызовем функцию
-  enableValidation();
