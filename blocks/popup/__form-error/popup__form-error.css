@@ -7,7 +7,7 @@
     color: #FF0000;
     height: 30px;
     margin-top: 5px;
-};
+}
 @media screen and (max-width: 768px){
     .popup__container{
         font-size: 10px;
