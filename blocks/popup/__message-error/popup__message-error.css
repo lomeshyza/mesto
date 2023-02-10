@@ -1,4 +1,4 @@
-.popup__form-error{
+.popup__message-error{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -9,7 +9,7 @@
     margin-top: 5px;
 }
 @media screen and (max-width: 768px){
-    .popup__container{
+    .popup__message-error{
         font-size: 10px;
     }
 }
