@@ -48,17 +48,14 @@ function closePopup(element) {
 
 //Функция очистки формы
 function resetErrors(popup){
-  if(popupElementEdit.classList.contains('popup_opened') || popupElementAdd.classList.contains('popup_opened')){
     Array.from(popup.querySelectorAll('.popup__form')).forEach(function(element){
       element.classList.remove('popup__form_type_error');
-      //element.textContent = '';
     });
     Array.from(popup.querySelectorAll('.popup__message-error')).forEach(function(element){
       element.classList.remove('popup__message-error_active');
       element.textContent = '';
     });
   };
-};
 
 // Обработчик «отправки» формы профиля
 function handleProfileFormSubmit (evt) {
@@ -106,7 +103,7 @@ function handleCardClick(item){
   popupPicture.alt = item.querySelector('.card__location').textContent;
   popupLocation.textContent = item.querySelector('.card__location').textContent;
   openPopup(popupElementImage);
-};
+ };
 //Функция создания карточки
 const creatNewCard = (item) => {
 //клонировали пустой шаблон
@@ -119,7 +116,6 @@ const creatNewCard = (item) => {
 //повесили слушатели лайк, удаление, открытие картинки
   initialCardsElement.querySelector('.card__like-button').addEventListener('click', toggleLike);
   initialCardsElement.querySelector('.card__basket').addEventListener('click', removeCard);
-  //cardImage.addEventListener('click', openImage);
   cardImage.addEventListener('click', () => handleCardClick(initialCardsElement));
   return initialCardsElement;
 };
