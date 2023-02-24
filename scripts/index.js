@@ -22,6 +22,7 @@ const cardsContainer = document.querySelector('.cards__container');
 const cardTemplate = document.querySelector('#cards-template').content;
 
 const formAddElement = document.querySelector('.popup__add');
+const formEditElement = document.querySelector('.popup__edit');
 
 const popupPicture = document.querySelector('.popup__picture');
 const popupLocation = document.querySelector('.popup__location');
@@ -136,6 +137,7 @@ cardAddButton.addEventListener('click', function (){
 });
 
 formAddElement.addEventListener('submit', handleCardFormSubmit);
+
 
 
 
