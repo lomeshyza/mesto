@@ -1,14 +1,5 @@
 //Валидация
-const formValidationConfig = {
-  formSelector: '.popup__forms',
-  inputSelector: '.popup__form',
-  buttonSelector: '.popup__button',
-  buttonDisabledClass: 'popup__button_disabled',
-  errorClass: 'popup__form_type_error',
-  errorMessageClass: 'popup__message-error_active'
-};
-
-class FormValidator {
+export class FormValidator {
   constructor (config, form){
     this._config = config,
     this._form = form
@@ -23,7 +14,7 @@ _showInputError (input) {
   input.classList.add(this._config.errorClass);
   errorElement.classList.add(this._config.errorMessageClass);
   errorElement.textContent = input.validationMessage;
-  console.log(errorElement.textContent);
+  
 };
 // Функция, которая удаляет класс с ошибкой
 _hideInputError (input) {
@@ -33,10 +24,8 @@ _hideInputError (input) {
   errorElement.classList.remove(this._config.errorMessageClass);
   errorElement.textContent = '';
 };
-
 _isValid (event){
-  const input = event.target;
-      
+  const input = event.target;  
   if(!input.validity.valid){
     this._showInputError(input);
   }else{
@@ -83,29 +72,15 @@ _setEventListeners () {
 }; 
 //Функция включения валидации форм
 enableValidation () {
-  // Найдём все формы с указанным классом в DOM,
-  // сделаем из них массив методом Array.from
- // const formsList = Array.from(document.querySelectorAll(this._config.formSelector));   
-  // Переберём полученную коллекцию
-  //formsList.forEach((form) => {
-  // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
+//вызовем функцию setEventListeners, передав ей элемент формы
   this._form.addEventListener('input',this._disableSubmit);
   this._form.addEventListener('input', () => {
     this._toggleButtonState();
     });
   this._setEventListeners();
   this._toggleButtonState();
-  //});
 };
-
 }
-
-  const formProfileValidator = new FormValidator(formValidationConfig, formEditElement);
-  const formAddValidator = new FormValidator(formValidationConfig, formAddElement);
- 
-  formProfileValidator.enableValidation(formValidationConfig);
-  formAddValidator.enableValidation(formValidationConfig);
-
 
 
 
