@@ -49,13 +49,6 @@ _toggleButtonState () {
 }; 
 //Функция добавления обработчиков к формам
 _setEventListeners () {
-  this._form.addEventListener('reset', () => {
-  // `setTimeout` нужен для того, чтобы дождаться очищения формы (вызов уйдет в конце стэка) 
-  //и только потом вызвать `toggleButtonState`
-  setTimeout(() => {
-    this._toggleButtonState();
-    }, 0); // достаточно указать 0 миллисекунд, чтобы после `reset` уже сработало действие
-  });
   // Обойдём все элементы полученной коллекции
   this._inputList.forEach((item) => {
   // каждому полю добавим обработчик события 
