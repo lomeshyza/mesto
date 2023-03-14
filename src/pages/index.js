@@ -1,10 +1,10 @@
-import {Card} from '../scripts/Card.js';
-import {FormValidator} from '../scripts/FormValidator.js';
+import {Card} from '../components/Card.js';
+import {FormValidator} from '../components/FormValidator.js';
 import {popupElementAdd,profileName,profileAbout, placeInput, imageInput, nameInput, jobInput, formEditElement, formAddElement, profileOpenButton,cardAddButton, popupElementEdit, popupElementImage} from '../utils/constants.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
-
+import '../pages/index.css'
 //Функция открытия изображения
 
 export const handleCardClick = (name, link) =>{
