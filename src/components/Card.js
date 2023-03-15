@@ -1,5 +1,3 @@
-import {handleCardClick} from '../pages/index.js';
-
 export class Card {
   constructor (data, templateSelector, handleCardClick){
     this._link = data.link,
@@ -39,6 +37,5 @@ export class Card {
     this._cardLikeBtn.addEventListener('click',  () => this._toggleLike());
     this._cardBasket.addEventListener('click', () => this._removeCard());
     this._cardImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
-    
   }
 }

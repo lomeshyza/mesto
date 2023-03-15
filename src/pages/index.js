@@ -1,48 +1,23 @@
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {popupElementAdd, profileName, profileAbout, placeInput, imageInput, nameInput,
+import {profileName, profileAbout, nameInput,
   jobInput, formEditElement, formAddElement, profileOpenButton, cardAddButton,
-  popupElementEdit, popupElementImage} from '../utils/constants.js';
+  initialCards, formValidationConfig} from '../utils/constants.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import '../pages/index.css'
+
 //Функция открытия изображения
+const popupImage = new PopupWithImage('.popup_type_image');
+popupImage.setEventListeners();
 
 export const handleCardClick = (name, link) => {
-  const popupImage = new PopupWithImage(popupElementImage);
   popupImage.openPopup(name, link);
-  popupImage.setEventListeners();
   };
- 
 //создание карточек
-const initialCards = [
-  { 
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+
 export function createCard(data) {
   const card = new Card(data,'#cards-template', handleCardClick);
 
@@ -59,8 +34,10 @@ cardsList.rendererItems(initialCards);
 //  формы профиля
 const userInfo = new UserInfo(profileName, profileAbout);
 
-const popupWithFormProfile= new PopupWithForm(popupElementEdit, () =>{
-  userInfo.setUserInfo();
+const popupWithFormProfile = new PopupWithForm('.popup_type_edit', (data) =>{
+  userInfo.setUserInfo(
+    data.popupProfileName, 
+    data.popupProfileAbout);
   popupWithFormProfile.closePopup ();
   });
 
@@ -76,15 +53,15 @@ profileOpenButton.addEventListener('click', () => {
  
 // Форма добавления карточки
 
-  const popupWithFormAdd = new PopupWithForm(popupElementAdd, () => {
-    const newCard = {
-      name: placeInput.value,
-      link: imageInput.value
-    } 
-     const cardElement = createCard(newCard);
-     cardsList.setItem(cardElement);
-     popupWithFormAdd.closePopup();
-   });
+  const popupWithFormAdd = new PopupWithForm('.popup_type_add', 
+     (data) => {
+      cardsList.setItem(createCard({
+        name: data.popupPlace,
+        link: data.popupPlaceLink
+      }));
+      popupWithFormAdd.closePopup();
+    }
+   );
   
 cardAddButton.addEventListener('click', ()=>{ 
   popupWithFormAdd.openPopup();
@@ -93,17 +70,39 @@ cardAddButton.addEventListener('click', ()=>{
 popupWithFormAdd.setEventListeners();
 
 //валидация форм
-const formValidationConfig = {
-  formSelector: '.popup__forms',
-  inputSelector: '.popup__form',
-  buttonSelector: '.popup__button',
-  buttonDisabledClass: 'popup__button_disabled',
-  errorClass: 'popup__form_type_error',
-  errorMessageClass: 'popup__message-error_active'
-};
 
 const formProfileValidator = new FormValidator(formValidationConfig, formEditElement);
 const formAddValidator = new FormValidator(formValidationConfig, formAddElement);
  
-formProfileValidator.enableValidation(formValidationConfig);
-formAddValidator.enableValidation(formValidationConfig);
+formProfileValidator.enableValidation();
+formAddValidator.enableValidation();
+
+
+
+
+
+
+/* const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(config);
+ 
+//И теперь можно использовать валидаторы для деактивации кнопки и тд
+
+formValidators[ profileForm.getAttribute('name') ].resetValidation()
+
+// или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
+formValidators['profile-form'].resetValidation() */
