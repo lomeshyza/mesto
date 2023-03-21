@@ -9,6 +9,19 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import '../pages/index.css'
 
+fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
+  headers: {
+    authorization: 'f25ed207-d78c-464d-b0ee-85c791005c08'
+  }
+  
+})
+  .then(res => res.json())
+  .then((data) => {
+    console.log(data);
+  });
+ // fetch ('https://mesto.nomoreparties.co/v1/cohort-62/users/me')
+
+
 //Функция открытия изображения
 const popupImage = new PopupWithImage('.popup_type_image');
 popupImage.setEventListeners();

@@ -85,6 +85,28 @@
                 <h2 class="popup__location"></h2>
             </div>
         </section>
+        <section class="popup popup_type_confirm">
+            <div class="popup__container popup__confirm-container">
+                <button class="popup__close" type="button"></button>
+                <h3 class="popup__title">Вы уверены?</h3>
+                <button class="popup__button popup__button_type_confirm" type="submit">Да</button>
+            </div>
+        </section>
+        <section class="popup popup_type_update">
+            <div class="popup__container popup__update-container">
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="popup__forms popup__update" name="popupUpdateProfileForm" novalidate>
+                    <input id='link-input' class="popup__form popup__form_type_update" 
+                      type="url" 
+                      name="popupUpdateProfile" 
+                      placeholder="Ссылка на картинку" 
+                      required>
+                    <span class='link-input-error popup__message-error'></span>
+                    <button class="popup__button popup__button_type_update" type="submit">Сохранить</button>
+                </form>
+                <button class="popup__close" type="button"></button>
+            </div>
+        </section>
         <template id="cards-template">
             <li class="card">
                 <button class="card__basket"></button>
