@@ -1,6 +1,7 @@
 .profile__avatar{
     display: flex;
 }
+
 @media screen and (max-width: 768px){
     .profile__avatar{ 
         flex-direction: column;

@@ -13,13 +13,13 @@
         <main class="main">
             <section class="profile">
                 <div class="profile__avatar">
-                    <img class="profile__image" src="<%=require('./images/Kusto_avatar.jpg')%>" alt="Фото профайла">
+                    <div class="profile__image-change" ><img src="#>" alt = "Аватар" class="profile__image"></div>
                     <div class="profile__element">
                         <div class="profile__profile-info">
-                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <h1 class="profile__name"></h1>
                             <button class="profile__edit-button" type="button"></button>
                         </div>
-                        <p class="profile__about">Исследователь океана</p>
+                        <p class="profile__about"></p>
                     </div>
                 </div>
                 <button class="profile__add-button" type="button"></button>
@@ -88,8 +88,10 @@
         <section class="popup popup_type_confirm">
             <div class="popup__container popup__confirm-container">
                 <button class="popup__close" type="button"></button>
-                <h3 class="popup__title">Вы уверены?</h3>
-                <button class="popup__button popup__button_type_confirm" type="submit">Да</button>
+                <form class="popup__forms">
+                  <h3 class="popup__title">Вы уверены?</h3>
+                  <button class="popup__button popup__button_type_confirm" type="submit">Да</button>
+                </form>
             </div>
         </section>
         <section class="popup popup_type_update">
@@ -113,7 +115,10 @@
                 <img class="card__image" alt="#" src="#">
                 <div class="card__footer">
                     <h2 class="card__location"></h2>
-                    <button class="card__like-button" type="button"></button>
+                    <div class="card__likes-group">
+                        <button class="card__like-button" type="button"></button>
+                        <div class="card__like-counter"></div>
+                    </div>    
                 </div>
             </li>
         </template>
