@@ -10,39 +10,19 @@ import '../pages/index.css'
 import {Api} from '../components/Api.js';
 import {PopupWithConfirm} from '../components/PopupWithConfirm';
 
-const popupElements = document.querySelectorAll('.popup');
-const popupElementEdit = document.querySelector('.popup_type_edit');
-const popupElementAdd = document.querySelector('.popup_type_add');
-const popupElementImage = document.querySelector('.popup_type_image');
-const popupElementUpdateAvatar = document.querySelector('.popup_type_update')
-
-const popupCloseButtons = document.querySelectorAll('.popup__close');
-const popupContainer = document.querySelector('.popup__container');
-
 const profileOpenButton = document.querySelector('.profile__edit-button');
 const cardAddButton = document.querySelector('.profile__add-button');
 
-const formElements = document.querySelectorAll('.popup__forms');
-
 const nameInput = document.querySelector('.popup__form_type_name');
 const jobInput = document.querySelector('.popup__form_type_about');
-const imageInput = document.querySelector('.popup__form_type_image');
-const placeInput = document.querySelector('.popup__form_type_place');
 
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 const profileImage = document.querySelector('.profile__image');
-const profileAvatar = document.querySelector('.profile__image-change');
-const cardsContainer = document.querySelector('.cards__container');
-const cardTemplate = document.querySelector('#cards-template');
 
 const formAddElement = document.querySelector('.popup__add');
 const formEditElement = document.querySelector('.popup__edit');
 const formEditAvatar = document.querySelector('.popup__update');
-
-const popupPicture = document.querySelector('.popup__picture');
-const popupLocation = document.querySelector('.popup__location');
-const inputList = Array.from(document.querySelectorAll('.popup__form'));
 
   const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
