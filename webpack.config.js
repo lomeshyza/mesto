@@ -9,12 +9,15 @@ entry: { main: './src/pages/index.js' },
 output: {
   filename: 'main.[hash].js',
   path: path.resolve(__dirname, 'build'),
+  publicPath: '',
 },
 mode: 'development',
 devServer:{
   static:{
-    directory: path.resolve(__dirname, 'build'),
+    directory: path.resolve(__dirname, 'build'), 
   },
+  compress: true,
+  port: 8080,
   open: true,
 },
 module:{

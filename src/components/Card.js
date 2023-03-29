@@ -30,21 +30,6 @@ export class Card {
     .cloneNode(true);
     return cardElement;
   }
-  toggleLike (data) { 
-    this._likesCounter.textContent = data.likes.length;
-    this._cardLikeBtn.classList.toggle('card__like-button_active');
-  }; 
-  _isLiked(){
-    this._data.likes.forEach((user=>{
-      if(user._id === this._userId){
-        this._cardLikeBtn.classList.add('card__like-button_active');
-      }
-    }))
-  }
-  removeCard () {
-    this._element.remove();
-    this._element = null;
-  };
   generateCard () {
     this._setEventListeners();
     this._cardImage.src = this._link;
@@ -55,12 +40,26 @@ export class Card {
     this._handleBasket();
     this._isLiked();
     return this._element;
-  }
-
+  };
+  removeCard () {
+    this._element.remove();
+    this._element = null;
+  };
   _handleBasket(){
     if(this._ownerId !== this._userId){
       this._cardBasket.remove()
     }
+  };
+  toggleLike (data) { 
+    this._likesCounter.textContent = data.likes.length;
+    this._cardLikeBtn.classList.toggle('card__like-button_active');
+  }; 
+  _isLiked(){
+    this._data.likes.forEach((user=>{
+      if(user._id === this._userId){
+        this._cardLikeBtn.classList.add('card__like-button_active');
+      }
+    }))
   }
   _setEventListeners () {
     this._cardLikeBtn.addEventListener('click', () => {

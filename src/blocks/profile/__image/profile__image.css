@@ -2,7 +2,7 @@
     border-radius: 50%;
     height: 120px;
     width: 120px;
-    object-fit: cover ;
+    object-fit: cover;
     }
 .profile__image:hover{
     background: rgb(0, 0, 0);
