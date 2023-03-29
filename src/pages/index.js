@@ -1,8 +1,7 @@
+
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {profileName, profileAbout, nameInput,
-  jobInput, formEditElement, formAddElement, formEditAvatar, profileOpenButton, cardAddButton,
-  formValidationConfig, profileImage} from '../utils/constants.js';
+import {formValidationConfig} from '../utils/constants.js';
 import {Section} from '../components/Section.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
@@ -10,6 +9,40 @@ import {UserInfo} from '../components/UserInfo.js';
 import '../pages/index.css'
 import {Api} from '../components/Api.js';
 import {PopupWithConfirm} from '../components/PopupWithConfirm';
+
+const popupElements = document.querySelectorAll('.popup');
+const popupElementEdit = document.querySelector('.popup_type_edit');
+const popupElementAdd = document.querySelector('.popup_type_add');
+const popupElementImage = document.querySelector('.popup_type_image');
+const popupElementUpdateAvatar = document.querySelector('.popup_type_update')
+
+const popupCloseButtons = document.querySelectorAll('.popup__close');
+const popupContainer = document.querySelector('.popup__container');
+
+const profileOpenButton = document.querySelector('.profile__edit-button');
+const cardAddButton = document.querySelector('.profile__add-button');
+
+const formElements = document.querySelectorAll('.popup__forms');
+
+const nameInput = document.querySelector('.popup__form_type_name');
+const jobInput = document.querySelector('.popup__form_type_about');
+const imageInput = document.querySelector('.popup__form_type_image');
+const placeInput = document.querySelector('.popup__form_type_place');
+
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
+const profileImage = document.querySelector('.profile__image');
+const profileAvatar = document.querySelector('.profile__image-change');
+const cardsContainer = document.querySelector('.cards__container');
+const cardTemplate = document.querySelector('#cards-template');
+
+const formAddElement = document.querySelector('.popup__add');
+const formEditElement = document.querySelector('.popup__edit');
+const formEditAvatar = document.querySelector('.popup__update');
+
+const popupPicture = document.querySelector('.popup__picture');
+const popupLocation = document.querySelector('.popup__location');
+const inputList = Array.from(document.querySelectorAll('.popup__form'));
 
   const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
@@ -24,8 +57,7 @@ import {PopupWithConfirm} from '../components/PopupWithConfirm';
   .then(([profileInfo, cardsData]) => {
     userId = profileInfo._id;
     userInfo.setUserInfo(profileInfo);
-    const arr = cardsData.reverse();
-    cardsList.rendererItems(arr);
+    cardsList.rendererItems(cardsData);
    })
   .catch((err) => {
     console.log(err);
@@ -36,7 +68,7 @@ import {PopupWithConfirm} from '../components/PopupWithConfirm';
 const cardsList = new Section({ 
   renderer: (data) => {
     const InitialCards = createCard(data);
-    cardsList.setItem(InitialCards)
+    cardsList.addItems(InitialCards)
   }
  },'.cards__container');
 
@@ -103,10 +135,11 @@ const popupConfirm = new PopupWithConfirm('.popup_type_confirm');
 //Попап открытия изображения
 const popupImage = new PopupWithImage('.popup_type_image');
 
-cardAddButton.addEventListener('click', ()=>{ 
+function handlePopupWithFormAdd() {
   popupWithFormAdd.openPopup();
   formAddValidator.resetValidation();
-});
+} 
+cardAddButton.addEventListener('click', handlePopupWithFormAdd);
 
 popupWithFormAdd.setEventListeners();
 popupConfirm.setEventListeners();
@@ -151,18 +184,20 @@ const popupWithFormUpdateAvatar = new PopupWithForm('.popup_type_update', {
     }
   }
 );
-
-profileOpenButton.addEventListener('click', () => {
+function openPopupProfile() {
   const profileInfo = userInfo.getUserInfo ();
   nameInput.value = profileInfo.name;
   jobInput.value = profileInfo.job;
   popupWithFormProfile.openPopup ();
   formProfileValidator.resetValidation ();
-});
-profileImage.addEventListener('click', ()=>{ 
+} 
+function openPopupUpdateAvatar() {
   popupWithFormUpdateAvatar.openPopup();
   formEditAvatarValidator.resetValidation();
-});
+} 
+
+profileOpenButton.addEventListener('click', openPopupProfile);
+profileImage.addEventListener('click', openPopupUpdateAvatar);
 
 popupWithFormProfile.setEventListeners();
 popupWithFormUpdateAvatar.setEventListeners();

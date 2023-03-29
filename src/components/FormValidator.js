@@ -60,7 +60,9 @@ _setEventListeners () {
 }; 
 //Функция очистки формы
 resetValidation() {
+  
   this._toggleButtonState(); 
+  
   this._inputList.forEach((inputElement) => {
     this._hideInputError(inputElement) 
   });

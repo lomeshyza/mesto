@@ -17,7 +17,7 @@ devServer:{
     directory: path.resolve(__dirname, 'build'), 
   },
   compress: true,
-  port: 8080,
+  port: 8081,
   open: true,
 },
 module:{
