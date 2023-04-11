@@ -7,17 +7,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 155px;
+    max-width: 214px;
 }
 @media screen and (max-width: 768px){
     .card__location{
        font-size: 24px;
        line-height: 29px;
-       max-width: 145px;
+       /* max-width: 145px; */
     }
 }
 @media screen and (max-width: 500px){
     .card__location{
-       max-width: 155px;
+       /* max-width: 155px; */
     }
 }

@@ -152,7 +152,8 @@ const popupWithFormUpdateAvatar = new PopupWithForm('.popup_type_update', {
     popupWithFormUpdateAvatar.loading(true); 
     api.addAvatar(data)
     .then((res) =>{
-      userInfo.setUserInfo(res)
+      userInfo.setUserInfo(res);
+      popupWithFormUpdateAvatar.closePopup();
       })
     .catch((err) => {
       console.log(err);
@@ -160,7 +161,6 @@ const popupWithFormUpdateAvatar = new PopupWithForm('.popup_type_update', {
     .finally (()=>{
       popupWithFormUpdateAvatar.loading(false);     
       });
-    popupWithFormUpdateAvatar.closePopup();
     }
   }
 );
